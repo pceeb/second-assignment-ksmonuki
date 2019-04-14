@@ -1,0 +1,402 @@
+Lecture Homework: Practice exercises due 4-15-19 before class.
+Hoffman2
+What is the procedure for logging into Hoffman2?
+- Enter the code: ssh username@hoffman2.idre.ucla.edu
+- You are then instructed to enter your password. Enter your password to officially log into Hoffman.
+What is the first thing that you do once you login? What is the command?
+- Once you are in the login node, type the command "qrsh" to receive a compute node. 
+
+Using 'ls'
+You can use two flags at the same time. What does the command ls do when used with the -l flag? What about if you use both the -l and the -h flag?
+- If you use "ls -l" you will see a list in long form of all the files and nested directories within your directory.
+- If you use the command "ls -h -l" you will see the same list information in long form as "ls -l" but with human readable format sizes (ie. 4K, 2.9K, etc).
+
+The command ls -R lists the contents of directories recursively, i.e., lists their sub-directories, sub-sub-directories, and so on at each level. The command ls -t lists things by time of last change, with most recently changed files or directories first. In what order does ls -R -t display things? Hint: ls -l uses a long listing format to view timestamps.
+
+- The command "ls -R -t" displays all the contents of the directory and its nested directories in the order of most recent change. 
+
+Shortcuts
+1. what is ~: indicates your home directory
+
+2. what is ../: indicates the previous directory (directory your current directory is nested inside)
+
+3. what is ./?: indicates your current directory
+
+4. Starting from /Users/amanda/data, which of the following commands could Amanda use to navigate to her home directory, which is /Users/amanda? Indicate what each command does.
+
+$ cd .: stay in your current directory
+$ cd /: move to a directory beyond your home directory
+$ cd /home/amanda: nothing since the amanda directory is in the Users directory, not the home directory
+$ cd ../..: moves you two directories back
+$ cd ~ : brings you back to the home directory
+$ cd home: nothing since the home directory does not exist
+$ cd ~/data/..: navigates to the home directory
+$ cd: stays in your current directory
+$ cd ..: navigates to the home directory
+
+
+File systems
+1. Using the filesystem diagram below, if pwd displays /Users/thing, what will ls -F ../backup display?
+a. ../backup: No such file or directory
+
+b. 2012-12-01 2013-01-08 2013-01-27
+
+c. 2012-12-01/ 2013-01-08/ 2013-01-27/
+
+d. original/ pnas_final/ pnas_sub/
+
+*The answer is a. 
+
+2. Using the filesystem diagram below, if pwd displays /Users/backup, and -r tells ls to display things in reverse order, what command(s) will result in the following output:
+pnas_sub/ pnas_final/ original/
+a. ls pwd
+
+b. ls -r -F
+
+c. ls -r -F /Users/backup
+
+*The answer is b. 
+
+
+
+Making files and appending stuff
+1. do:
+$ touch my_file.txt
+
+What did the touch command do? When you look at your current directory using the GUI file explorer, does the file show up?
+
+- The touch command created a text file in my home directory. The file showed up when I used the "ls" command to view the contents of my directory. 
+
+Use 'ls -l' to inspect the files. How large is my_file.txt?
+
+- The my_file.txt file is 0 bytes.
+
+When might you want to create a file this way?
+
+- You might want to create a file this way when you add a text file to a directory and edit the file in shell.
+
+Can you use touch to edit my_file.txt?
+
+- No, touch is a command to create an empty file (you can only create a file, not edit one). 
+
+We have seen the use of >, but there is a similar operator >> which works slightly differently. We’ll learn about the differences between these two operators by printing some strings. We can use the echo command to print strings e.g.
+$ echo The echo command prints text
+The echo command prints text Now test the commands below to reveal the difference between the two operators:
+
+$ echo hello > testfile01.txt
+and:
+
+$ echo hello >> testfile02.txt
+2. What is the difference between > and >> ? Hint: Try executing each command twice in a row and then examining the output files.
+
+The > saves the text in a .txt file. Every time you use the >, it overrides the previous text to save the new text in the same .txt file. The >> saves the text in a .txt file but adds to the previous text instead of deleting it. 
+
+3. We have already met the head command, which prints lines from the start of a file. tail is similar, but prints lines from the end of a file instead.
+Consider the file /u/home/class/c177/c177-i0/classdata/Homework_data/data-shell/data/animals.txt. After these commands, select the answer that corresponds to the file animals-subset.txt:
+
+$ head -n 3 animals.txt > animals-subset.txt
+$ tail -n 2 animals.txt >> animals-subset.txt
+a. The first three lines of animals.txt
+
+b. The last two lines of animals.txt
+
+c. The first three lines and the last two lines of animals.txt
+
+d. The second and third lines of animals.txt
+
+*The answer is c. 
+
+
+
+
+Copying, Moving and deleting files
+1. After running the following commands, Jamie realizes that she put the files sucrose.dat and maltose.dat into the wrong folder:
+$ ls -F
+ analyzed/ raw/
+$ ls -F analyzed
+fructose.dat glucose.dat maltose.dat sucrose.dat
+$ cd raw/
+Fill in the blanks to move these files to the current folder (i.e., the one she is currently in):
+
+$ mv ~/analyzed/sucrose.dat  ~/analyzed/maltose.dat ./
+
+
+2. Suppose that you created a plain-text file in your current directory to contain a list of the statistical tests you will need to do to analyze your data, and named it: statstics.txt
+After creating and saving this file you realize you misspelled the filename! You want to correct the mistake, which of the following commands could you use to do so?
+
+a. cp statstics.txt statistics.txt
+
+b. mv statstics.txt statistics.txt
+
+c. mv statstics.txt .
+
+d. cp statstics.txt .
+
+*The answer is b. 
+
+3. What is the output of the closing ls command in the sequence shown below?
+$ pwd
+/Users/jamie/data
+$ ls
+proteins.dat
+$ mkdir recombine
+$ mv proteins.dat recombine/
+$ cp recombine/proteins.dat ../proteins-saved.dat
+$ ls
+a. proteins-saved.dat recombine b. recombine c. proteins.dat recombine d. proteins-saved.dat
+
+*The answer is b. 
+
+4. What happens when we execute rm -i thesis_backup/quotations.txt? Why would we want this protection when using rm?
+
+When you enter the command, the shell first asks you if you definitely want to remove the file. If you do, then press "y" and delete the file. The "-i" protects you from accidentally deleting a really important file, such as a thesis backup. 
+
+5. In the example below, what does cp do when given several filenames and a directory name?
+
+$ mkdir backup
+$ cp amino-acids.txt animals.txt backup/
+
+The backup directory is created first. Then the two .txt files (amino-acids.txt and animals.txt) are copied into the backup directory. 
+
+6. In the example below, what does cp do when given three or more file names?
+$ ls -F
+amino-acids.txt animals.txt backup/ elements/ morse.txt pdb/ planets.txt salmon.txt sunspot.txt
+
+$ cp amino-acids.txt animals.txt morse.txt 
+
+The same files and copied into the same directory, so there is no change. 
+
+
+7. Sam has a directory containing calibration data, datasets, and descriptions of the datasets:
+.
+├── 2015-10-23-calibration.txt
+├── 2015-10-23-dataset1.txt
+├── 2015-10-23-dataset2.txt
+├── 2015-10-23-dataset_overview.txt
+├── 2015-10-26-calibration.txt
+├── 2015-10-26-dataset1.txt
+├── 2015-10-26-dataset2.txt
+├── 2015-10-26-dataset_overview.txt
+├── 2015-11-23-calibration.txt
+├── 2015-11-23-dataset1.txt
+├── 2015-11-23-dataset2.txt
+├── 2015-11-23-dataset_overview.txt
+├── backup
+│   ├── calibration
+│   └── datasets
+└── send_to_bob
+    ├── all_datasets_created_on_a_23rd
+    └── all_november_files
+Before heading off to another field trip, she wants to back up her data and send some datasets to her colleague Bob. Sam uses the following commands to get the job done:
+
+$ cp *dataset* backup/datasets
+$ cp *calibration* backup/calibration
+$ cp 2015-11-23* send_to_bob/all_november_files/
+$ cp *23* send_to_bob/all_datasets_created_on_a_23rd/
+
+Help Sam by filling in the blanks.
+
+The resulting directory structure should look like this
+
+.
+├── 2015-10-23-calibration.txt
+├── 2015-10-23-dataset1.txt
+├── 2015-10-23-dataset2.txt
+├── 2015-10-23-dataset_overview.txt
+├── 2015-10-26-calibration.txt
+├── 2015-10-26-dataset1.txt
+├── 2015-10-26-dataset2.txt
+├── 2015-10-26-dataset_overview.txt
+├── 2015-11-23-calibration.txt
+├── 2015-11-23-dataset1.txt
+├── 2015-11-23-dataset2.txt
+├── 2015-11-23-dataset_overview.txt
+├── backup
+│   ├── calibration
+│   │   ├── 2015-10-23-calibration.txt
+│   │   ├── 2015-10-26-calibration.txt
+│   │   └── 2015-11-23-calibration.txt
+│   └── datasets
+│       ├── 2015-10-23-dataset1.txt
+│       ├── 2015-10-23-dataset2.txt
+│       ├── 2015-10-23-dataset_overview.txt
+│       ├── 2015-10-26-dataset1.txt
+│       ├── 2015-10-26-dataset2.txt
+│       ├── 2015-10-26-dataset_overview.txt
+│       ├── 2015-11-23-dataset1.txt
+│       ├── 2015-11-23-dataset2.txt
+│       └── 2015-11-23-dataset_overview.txt
+└── send_to_bob
+    ├── all_datasets_created_on_a_23rd
+    │   ├── 2015-10-23-dataset1.txt
+    │   ├── 2015-10-23-dataset2.txt
+    │   ├── 2015-10-23-dataset_overview.txt
+    │   ├── 2015-11-23-dataset1.txt
+    │   ├── 2015-11-23-dataset2.txt
+    │   └── 2015-11-23-dataset_overview.txt
+    └── all_november_files
+        ├── 2015-11-23-calibration.txt
+        ├── 2015-11-23-dataset1.txt
+        ├── 2015-11-23-dataset2.txt
+        └── 2015-11-23-dataset_overview.txt
+
+7. Jamie is working on a project and she sees that her files aren’t very well organized:
+$ ls -F
+analyzed/  fructose.dat    raw/   sucrose.dat
+The fructose.dat and sucrose.dat files contain output from her data analysis. What command(s) covered in this lesson does she need to run so that the commands below will produce the output shown?
+
+$ ls -F
+analyzed/   raw/
+$ ls analyzed
+fructose.dat    sucrose.dat
+
+$mv fructose.dat sucrose.dat ./ analyzed/
+
+8. You’re starting a new experiment, and would like to duplicate the directory structure from your previous experiment so you can add new data.
+Assume that the previous experiment is in a folder called ‘2016-05-18’, which contains a data folder that in turn contains folders named raw and processed that contain data files. The goal is to copy the folder structure of the 2016-05-18-data folder into a folder called 2016-05-20 so that your final directory structure looks like this:
+
+2016-05-20/
+└── data
+    ├── processed
+    └── raw
+Which of the following set of commands would achieve this objective? What would the other commands do?
+
+$ mkdir 2016-05-20
+$ mkdir 2016-05-20/data
+$ mkdir 2016-05-20/data/processed
+$ mkdir 2016-05-20/data/raw
+- This string of commands creates the desired file structure. 
+
+$ mkdir 2016-05-20
+$ cd 2016-05-20
+$ mkdir data
+$ cd data
+$ mkdir raw processed
+- This string of commands also creates the desired file structure. 
+
+$ mkdir 2016-05-20/data/raw
+$ mkdir 2016-05-20/data/processed
+- These commands do not work because you cannot created nested directories using "mkdir" in a directory that has not been created yet. To make these commands work, add a "-p" after the "mkdir" command. 
+
+$ mkdir 2016-05-20
+$ cd 2016-05-20
+$ mkdir data
+$ mkdir raw processed
+- These commands do not work because the output is three independent directories (data, raw, processed) in the 2016-05-20 directory. You want the raw and processed directories nested in the data directory.
+
+
+
+Sort, Piping, Uniq, Cut
+1. If we run sort on a file containing the following lines:
+10 2 19 22 6 the output is:
+
+10 19 2 22 6 If we run sort -n on the same input, we get this instead:
+
+2 6 10 19 22
+
+Explain why -n has this effect.
+
+- The command "-n", when added to the "sort" command, sorts the lines by increasing numerical value. 
+
+2. In our current directory, we want to find the 3 files which have the least number of lines. Which command listed below would work?
+wc -l * > sort -n > head -n 3
+wc -l * | sort -n | head -n 1-3
+wc -l * | head -n 3 | sort -n
+wc -l * | sort -n | head -n 3
+
+- The last command is the correct command to use. 
+
+3. The command uniq removes adjacent duplicated lines from its input. For example, the file 'data-shell/data/salmon.txt' contains:
+coho
+coho
+steelhead
+coho
+steelhead
+steelhead
+Running the command uniq salmon.txt from the 'data-shell/data' directory produces:
+
+coho
+steelhead
+coho
+steelhead
+Why do you think uniq only removes adjacent duplicated lines? (Hint: think about very large data sets.) What other command could you combine with it in a pipe to remove all duplicated lines?
+
+- If you have very large datasets, there may be several duplicated lines you want to keep when you run the "uniq" command. To remove all of the duplicated lines, create a pipe to sort the text alphabetically and all the duplicated lines are adjacent to each other. Then run the "uniq" command. ie: sort | uniq
+
+4. A file called animals.txt (in the data-shell/data folder) contains the following data:
+2012-11-05,deer
+2012-11-05,rabbit
+2012-11-05,raccoon
+2012-11-06,rabbit
+2012-11-06,deer
+2012-11-06,fox
+2012-11-07,rabbit
+2012-11-07,bear
+What text passes through each of the pipes and the final redirect in the pipeline below?
+
+$ cat animals.txt | head -n 5 | tail -n 3 | sort -r > final.txt
+Hint: build the pipeline up one command at a time to test your understanding
+
+The first command in the pipe prints the animals.txt text. The second command selects the first five entries. The third command selects the bottom three entries from those five first entries selected previously. The fourth command sorts those three entries in reverse numerical order so the most recent dates are first. The last command saves those entries in a new text file called "final.txt". 
+
+5. For the file animals.txt from the previous exercise, the command:
+$ cut -d , -f 2 animals.txt
+uses the -d flag to split each line by comma, and the -f flag to print the second field in each line, to give the following output:
+
+deer
+rabbit
+raccoon
+rabbit
+deer
+fox
+rabbit
+bear
+What other command(s) could be added to this in a pipeline to find out what animals the file contains (without any duplicates in their names)?
+
+- The following command pipeline shows the animals in the file without any duplicates: $ cut -d , -f 2 animals.txt | sort | uniq 
+
+6. The file animals.txt contains 8 lines of data formatted as follows:
+2012-11-05,deer
+2012-11-05,rabbit
+2012-11-05,raccoon
+2012-11-06,rabbit
+...
+Assuming your current directory is data-shell/data/, what command would you use to produce a table that shows the total count of each type of animal in the file?
+
+grep {deer, rabbit, raccoon, deer, fox, bear} animals.txt | wc -l
+sort animals.txt | uniq -c
+sort -t, -k2,2 animals.txt | uniq -c
+cut -d, -f 2 animals.txt | uniq -c
+cut -d, -f 2 animals.txt | sort | uniq -c
+cut -d, -f 2 animals.txt | sort | uniq -c | wc -l
+
+*The 5th command produces a table with the total count for each type of animal (cut -d, -f 2 animals.txt | sort | uniq -c)
+
+
+
+Wildcards
+1. Wildcard expressions can be very complex, but you can sometimes write them in ways that only use simple syntax, at the expense of being a bit more verbose. Consider the directory data-shell/north-pacific-gyre/2012-07-03: the wildcard expression \*[AB].txt matches all files ending in A.txt or B.txt. Imagine you forgot about this.
+Can you match the same set of files with basic wildcard expressions that do not use the [ ] syntax? Hint: You may need more than one expression.
+
+- ls *A.txt *B.txt
+
+The expression that you found and the expression from the lesson match the same set of files in this example. What is the small difference between the outputs?
+
+- Based on the previous command, there is no difference in the output. 
+
+2. Suppose you want to delete your processed data files, and only keep your raw files and processing script to save storage. The raw files end in .dat and the processed files end in .txt. Which of the following would remove all the processed data files, and only the processed data files?
+rm ?.txt
+rm \*.txt
+rm \* .txt
+rm \*.\*
+
+- The second command removes all the processed data files (ending in .txt) and only those processed data files. 
+
+
+
+
+
+
+
+
+
