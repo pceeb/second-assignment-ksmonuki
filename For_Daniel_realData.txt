@@ -1,0 +1,76 @@
+ 1050  cd ../
+ 1051  ls
+ 1052  cd Data/
+ 1053  ls
+ 1054  cd fasta/
+ 1055  ls
+ 1056  head -n 3 407228326.fasta 
+ 1057  wc -l *.fasta
+ 1058  tail -n+2 407228326.fasta 
+ 1059  tail -n+2 407228326.fasta | tr -d "\n"
+ 1060  tail -n+2 407228326.fasta | tr -d "\n" | wc -c
+ 1061* tail -n+2 407228412.fasta | tr -d 
+ 1062  tail -n+3 E.coli.fasta | tr -d "\n" | wc -c
+ 1063  tail -n+2 407228326.fasta | tr -d "\n" | grep -o "ATGTACATA"
+ 1064  tail -n+3 E.coli.fasta | tr -d "\n" | grep -o "ATGC" | wc -l
+ 1065  tail -n+2 E.coli.fasta | tr -d "\n" | grep -o "ATGC" | wc -l
+ 1066  tail -n+2 E.coli.fasta | tr -d "\n" | grep -o "[A,T]" | wc -l
+ 1067  tail -n+2 E.coli.fasta | tr -d "\n" | grep -o "[G,C]" | wc -l
+ 1068  history | tail -n 30 
+ 1069  history | tail -n -20 > For_Daniel_realData.txt
+ 1023  tail -n+265 > darwintest.txt
+ 1024  tail -n +4 | head
+ 1025  tail -n+265 otoos10.txt | head -n -13900 > darwin.txt
+ 1026  ls
+ 1027  less darwintest.txt 
+ 1028  rm darwintest.txt 
+ 1029  head darwin.txt
+ 1030  less darwin.txt 
+ 1031  tail darwin.txt 
+ 1032  tail -n + 265 otoos10.txt > test.txt
+ 1033  tail -n+265 otoos10.txt > test.txt
+ 1034  ls
+ 1035  head test.txt 
+ 1036  wc -l test.txt 
+ 1037  rm -i test.txt 
+ 1038  ls
+ 1039  wc -1 darwin.txt 
+ 1040  wc -l darwin.txt 
+ 1041  grep -w -i evolution darwin.txt 
+ 1042  grep -i -w evolution darwin.txt 
+ 1043  ls
+ 1044  grep -w -i evolved darwin.txt 
+ 1045  ls
+ 1046  cd ../
+ 1047  ls
+ 1048  cd Sandbox/
+ 1049  ls
+ 1050  cd TestWild
+ 1051  ls
+ 1052  less For_Daniel_grep.txt 
+ 1053  cd ../
+ 1054  ls
+ 1055  cd ../
+ 1056  ls
+ 1057  cd Data/
+ 1058  ls
+ 1059  grep evolution darwin.txt 
+ 1060  less darwin.txt 
+ 1061  grep -w selection darwin.txt 
+ 1062  grep -w evolution darwin.txt 
+ 1063  grep -w -i selection darwin.txt 
+ 1064  grep -w -i -c selection darwin.txt 
+ 1065  grep -w -i -c evolved darwin.txt 
+ 1066  grep -w -i -c evolution darwin.txt 
+ 1067  grep -w -i -c natural selection darwin.txt 
+ 1068  grep -w -i -c Wallace darwin.txt
+ 1069  grep -w -i natural darwin.txt | grep -w -i selection 
+ 1070  grep -w -i natural darwin.txt | grep -w -i -c selection
+ 1071  history | tail -n 30
+ 1072  history | tail -n 50
+ 1073  history | tail -n 51 >> For_Daniel_realData.txt 
+ 1075  cd Temperatures/
+ 1076  ls
+ 1077  grep 180[0-3]0101 * | grep -i -w TMAX
+ 1078   grep -i 1800 * | grep -w -i TMAX | cut -d , -f 4 | sort | tail -n 2
+ 1079  history | tail -n -5 >> For_Daniel_realData.txt

@@ -1,0 +1,30 @@
+  982  less For_Daniel_grep.txt
+  983  ls
+  984  cd ../
+  985  ls
+  986  cd TestWild
+  987  ls
+  988  cd ../
+  989  ls
+  990  mkdir TestFind
+  991  cd TestFind
+  992  mkdir -p Dir1/Dir11/Dir111
+  993  mkdir Dir2
+  994  mkdir Dir3
+  995  touch Dir1/File1.txt
+  996  touch Dir1/File1.csv
+  997  touch Dir1/File1.tex
+  998  touch Dir2/File2.txt
+  999  touch Dir2/File2.csv
+ 1000  touch Dir2/File2.tex
+ 1001  touch Dir1/Dir11/Dir111/File111.txt
+ 1002  touch Dir3/File3.txt
+ 1003  find . -name "File.txt"
+ 1004  ls
+ 1005  find . -name "File1.txt"
+ 1006  find . -name "*.txt"
+ 1007  find . -maxdepth 2 -name "*.txt"
+ 1008  find . -maxdepth 2 -not -name "*.txt"
+ 1009  find . -type d
+ 1010  find . -type f -exec ls -s {} \; | sort -n | head -10
+ 1011  history | tail -n 30 > For_Daniel_find.txt

@@ -1,0 +1,63 @@
+ 1016  git clone https://bitbucket.org/AllesinaLab/introscicomp2014.git
+ 1017  ls
+ 1018  cd introscicomp2014/
+ 1019  ls
+ 1020  cd UNIX
+ 1021  ls
+ 1022  cd ../
+ 1023  ls
+ 1024  cd ../
+ 1025  ls
+ 1026  mv ListRootDir.txt text.txt TestWild TestFind ./ introscicomp2014/UNIX/
+ 1027  ls
+ 1028  mv test.txt ./ introscicomp2014/UNIX/
+ 1029  ls
+ 1030  cd introscicomp2014/
+ 1031  ls
+ 1032  cd UNIX/
+ 1033  ls
+ 1034  cd Sandbox/
+ 1035  ls
+ 1036  pwd
+ 1037  cd ../
+ 1038  ls
+ 1039  mv TestFind ListRootDir.txt test.txt TestWild ./ Sandbox/
+ 1040  ls
+ 1041  cd Sandbox/
+ 1042  l
+ 1043  ls
+ 1044  history | tail -n -30
+ 1045  cd TestWild
+ 1046  ls
+ 1047  history | tail -n 32 > For_Daniel_Wildcard_firststeps.txt
+  932  pwd
+  933  ls
+  934  touch TestFile
+  935  mv TestFile TestFile2
+  936  rm TestFile2
+  937  mkdir TestDirectory
+  938  touch TestDirectory/Test.txt
+  939  rmdir TestDirectory
+  940  rm TestDirectory/Test.txt
+  941  rmdir TestDirectory/
+  942  echo "My first line." > test.txt
+  943  cat
+  944  cat test.txt 
+  945  echo "My second line" >> test.txt
+  946  ls / >> ListRootDir.txt
+  947  cat ListRootDir.txt 
+  948  mkdir TestWild
+  949  cd TestWild/
+  950  touch File1txt
+  951  touch File2.txt
+  952  touch File3.txt
+  953  touch File4.txt
+  954  touch File1.csv
+  955  touch File2.csv
+  956  touch File3.csv
+  957  touch File4.csv
+  958  touch Anotherfile.csv
+  959  touch Anotherfile.txt
+  960  ls
+  961  ls | wc -l
+  962  history | tail -n 31 > For_Daniel_Wildcard.txt
